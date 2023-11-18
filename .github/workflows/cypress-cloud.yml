@@ -8,8 +8,11 @@ on:
         default: cypress/e2e/*
 
 jobs:
-  cypress-electron-tests:
+  cypress-E2E-electron:
      runs-on: ubuntu-latest
+     container:
+      image: cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
+      options: --user 1001
      steps:
       - name: Get code
         uses: actions/checkout@v4.1.1
@@ -21,6 +24,69 @@ jobs:
           browser: electron
           record: true
           group: UI Electron
+          spec: ${{ github.event.inputs.spec }}
+        env:
+          CYPRESS_RECORD_KEY: c106ffdd-d5a5-4fe9-950a-828dc530e847
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  cypress-E2E-chrome:
+     needs: cypress-E2E-electron
+     runs-on: ubuntu-latest
+     container:
+      image: cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
+      options: --user 1001
+     steps:
+      - name: Get code
+        uses: actions/checkout@v4.1.1
+        
+      - name: Cypress run
+        uses: cypress-io/github-action@v6.5.0
+        with:
+          install-command: npm install
+          browser: chrome
+          record: true
+          group: UI Chrome
+          spec: ${{ github.event.inputs.spec }}
+        env:
+          CYPRESS_RECORD_KEY: c106ffdd-d5a5-4fe9-950a-828dc530e847
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  cypress-E2E-firefox:
+     needs: cypress-E2E-electron
+     runs-on: ubuntu-latest
+     container:
+      image: cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
+      options: --user 1001
+     steps:
+      - name: Get code
+        uses: actions/checkout@v4.1.1
+        
+      - name: Cypress run
+        uses: cypress-io/github-action@v6.5.0
+        with:
+          install-command: npm install
+          browser: firefox
+          record: true
+          group: UI Firefox
+          spec: ${{ github.event.inputs.spec }}
+        env:
+          CYPRESS_RECORD_KEY: c106ffdd-d5a5-4fe9-950a-828dc530e847
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  cypress-E2E-edge:
+     needs: cypress-E2E-electron
+     runs-on: ubuntu-latest
+     container:
+      image: cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
+      options: --user 1001
+     steps:
+      - name: Get code
+        uses: actions/checkout@v4.1.1
+        
+      - name: Cypress run
+        uses: cypress-io/github-action@v6.5.0
+        with:
+          install-command: npm install
+          browser: edge
+          record: true
+          group: UI Edge
           spec: ${{ github.event.inputs.spec }}
         env:
           CYPRESS_RECORD_KEY: c106ffdd-d5a5-4fe9-950a-828dc530e847
