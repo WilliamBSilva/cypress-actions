@@ -9,7 +9,7 @@ on:
 
 jobs:
   cypress-E2E-electron:
-     runs-on: ubuntu-latest
+     runs-on: ubuntu-22.04
      container:
       image: cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
       options: --user 1001
@@ -30,7 +30,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   cypress-E2E-chrome:
      needs: cypress-E2E-electron
-     runs-on: ubuntu-latest
+     runs-on: ubuntu-22.04
      container:
       image: cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
       options: --user 1001
@@ -51,7 +51,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   cypress-E2E-firefox:
      needs: cypress-E2E-electron
-     runs-on: ubuntu-latest
+     runs-on: ubuntu-22.04
      container:
       image: cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
       options: --user 1001
@@ -72,7 +72,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   cypress-E2E-edge:
      needs: cypress-E2E-electron
-     runs-on: ubuntu-latest
+     runs-on: ubuntu-22.04
      container:
       image: cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
       options: --user 1001
