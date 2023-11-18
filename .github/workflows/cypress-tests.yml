@@ -5,7 +5,7 @@ on:
     inputs:
       cli:
         description: Rub by cypress command line
-        default: npm cypress run
+        default: npx cypress run
 
 jobs:
   cypress-electron-tests:
