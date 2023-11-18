@@ -10,6 +10,9 @@ on:
 jobs:
   cypress-E2E-electron:
      runs-on: ubuntu-latest
+     strategy:
+      # don't fail the entire matrix on failure
+      fail-fast: false
      container:
       image: cypress/browsers:node18.12.0-chrome103-ff107
       options: --user 1001
@@ -29,8 +32,10 @@ jobs:
           CYPRESS_RECORD_KEY: c106ffdd-d5a5-4fe9-950a-828dc530e847
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   cypress-E2E-chrome:
-     needs: cypress-E2E-electron
      runs-on: ubuntu-latest
+     strategy:
+      # don't fail the entire matrix on failure
+      fail-fast: false
      container:
       image: cypress/browsers:node18.12.0-chrome103-ff107
       options: --user 1001
@@ -50,8 +55,10 @@ jobs:
           CYPRESS_RECORD_KEY: c106ffdd-d5a5-4fe9-950a-828dc530e847
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   cypress-E2E-firefox:
-     needs: cypress-E2E-electron
      runs-on: ubuntu-latest
+     strategy:
+      # don't fail the entire matrix on failure
+      fail-fast: false
      container:
       image: cypress/browsers:node18.12.0-chrome103-ff107
       options: --user 1001
