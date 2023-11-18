@@ -17,7 +17,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6.5.0
         with:
-          install-command: npm installl
+          install-command: npm install
           browser: electron
           record: true
           group: UI Electron
